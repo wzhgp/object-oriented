@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*function person(name,age){//构造函数
+				var obj = {}
+				//加工
+				obj.name = name,
+				obj.age = age
+				obj.say = function(){
+					//方法前面有主，默认this指向主
+					alert(this.name)
+				}
+				出厂
+				return obj;
+			}
+			var f = person('胖胖',18);
+			f.say();*/
+			
+			
+			/*
+			 new过之后，函数的返回值就变成了对象，函数里的this全部指向这个对象
+				默认return 这个对象。
+			*/
+			/*function person(name,age){
+				this.name = name,
+				this.age = age,
+				this.say = function(){
+					alert(this.name)
+				}
+			}
+			var p = new person('胖胖',16);
+			console.log(p)//--->person {name: "胖胖", age: 16, say: function}
+			//此时p就是person的实例化对象
+			p.say();*/
+			
+			
+			/*
+			 原型：函数的属性，值为对象
+			 */
+			/*function person(name){
+				this.name = name;
+			}
+			person.prototype.say = function(){
+				alert(this.name);
+			}
+			var p = new person('胖胖');
+			var p2= new person('胖胖')
+			console.log(p)
+			
+			console.log(p.__proto__) //-->Object {say: function, constructor(构造函数): function}
+			//实例化对象的原型链 == 构造函数的原型
+			//对象只有原型链，函数既有原型链也有原型
+			console.log(p.__proto__ == person.prototype);
+//			console.log(p.say == p2.say)
+			p.say();
+			//p.say ->p.__proto ->person.prototype*/
+			
+			/*
+			 	函数下的优先级：
+			 	实例化对象下的方法->构造函数原型上的方法-> Object.prototype
+			 */
+			function person(name){
+				this.name = name;
+			}
+			/*person.prototype.say = function(){
+				alert(this.name);
+			}*/
+			/*Object.prototype.say = function(){
+				alert('这是obj底下的');
+			}*/
+			Function.prototype.say = function(){
+				alert('我是Function')
+			}
+			var p = new person('胖胖');
+//			p.say();
+			person.say()
+			
+			//顺序：
+			//p.__proto__->构造函数的原型 || 构造函数 ——>构造函数的原型链->构造函数的原型||构造函数
+//			console.log(p)
+//			console.dir(person)
+			//此时的person就是p的构造函数，也是Function的实例化对象
+			
+		</script>
+	</body>
+</html>

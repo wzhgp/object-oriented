@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			对象（obj，arr，function）下才能有属性
+			1.面向对象：是一种***对现实世界理解和抽象***的方法，是计算机编程技术发展到一定阶段后的产物
+			 	抽象：把具有相同的特征形态归为**一类**叫抽象==>封装函数
+			面向对象的编程：
+				把功能类似或者相同的代码抽离出来，归为一类，把一些描述性的特征挂在这个类的原型上的一种编程思想。
+					属性挂在类上
+					方法挂在原型上
+			
+			2. ES6：
+			 	在ES6中使用{}：如果键和值相等(key==value):
+			 		那么可以写成{name,age}==>{name:name,age:age}
+			 					{								
+			 						fn:function(){},    ====>{fn(){},age}
+			 						age:age
+			 					}
+			3.this:
+				方法：arr.push()、arr.pop()->方法前边有主(arr),此时this指向主(arr);
+				函数：s.function(){}->this指向s,function(){}->此时this指向window
+			
+			4.构造函数:构造对象的函数
+				new：函数的运算符(可改变this指向)且执行函数  				***如果new {}就会报错****
+				语法：new 函数名
+					当不传参数时：fn() <==> new fn
+					new fn ->此时函数的**返回值**就变成了对象，函数里的this指向就指向这个对象并且默认会return这个对象
+					new函数之后就叫实例化，它的返回值，就是实例化对象。
+					注：如果在构造函数中return了一个简单类型的话，那么返回无效，仍然是函数
+						如果return后是一个复合类型([],{}),那么返回值就会是这个复合类型
+					例：function fn(){
+						conslog.log(this)
+					}
+					fn()中的this->window
+					var f = new fn;
+					new fn后this->fn(){},对象
+					new 函数后，此时f就是fn的实例化对象
+			总结：new 与 不new 的区别：
+				1.没有new的时候
+					a.返回值是return后的东西，默认是undefined
+					b.this指向window
+				2.new后
+					A.返回值是这个对象,如果有return：
+						a.return 简单类型 -> 这个对象
+						b.return 复合类型 -> 复合类型
+					B.this指向这个对象	
+			5.原型(prototype)：
+				理解：{
+					函数下的一个属性，***值为对象****
+					原型：添加类样式
+					之前：行间样式
+				}
+				作用：专门处理性能问题(优化性能)
+			6，原型链(__proto__):
+				实例化对象与构造函数之间的桥梁
+			注：对象身上没有原型，但是有原型链(_proto_)，函数既有原型也有原型链
+			注：原型与原型链的关系：
+				实例化对象的原型链==构造函数的原型
+			优先级：
+				实例化对象上的方法  > 构造函数原型下的方法  > Object.prototype
+				
+				找对象下的方法(必须是在构造函数的原型下)：
+					对象链 ->构造函数的原型>? || 构造函数-> 构造函数原型下的链 ->构造函数的原型? || 构造函数
+				解释：
+					对象下的__proto__->构造函数(constructor)?->prototype?->prototype底下的__proto__?....
+			注：构造函数的原型永远都是给实例化对象使用的
+			注：函数下本身有name属性，在函数执行时就会生成，此函数不允许修改，且name是其本身
+			？注：function既是Function的实例化对象,也是f1的构造函数。
+			？注：如果直接使用Object那么会找到Function
+				如果不直接使用，那么到Object就终止。
+			 */
+			/*function teacher(name,age){
+				var obj = {};
+				obj.name = name;
+				obj.age = age;
+				obj.say = function(){
+					alert('我的名字是：'+this.name);
+				}
+				return obj;
+			}
+			var t = teacher('大仙',18);
+			t.say()*/
+		//*******************ES6************************
+			/*function teacher(name,age){
+				var obj = {
+					name,
+					age,
+					say(){
+						alert('我的名字是：'+this.name);
+					}
+				}
+				return obj;
+			}
+			var t = teacher('大仙',18);
+			t.say();*/
+		//************************************************
+		
+		
+		//**************************************************
+		/* function teacher(name,age){
+				this.name = name;
+				this.age = age;
+				this.say = function(){
+					alert('我的名字是：'+this.name);
+				}
+			}
+			var t = new teacher('大仙',18);
+			//console.log(t)->teacher {name: "大仙", age: 18, say: function}
+			t.say()*/
+		//****************************************************************
+			
+			
+		//************************************
+			/* function Fn(name){
+				this.name = name;
+			}
+			Fn.prototype.say = function(){
+				alert(this.name);
+			}
+			var f = new Fn('大仙');
+			var f2 = new Fn('小仙');
+			console.log(f == f2)
+			console.log(f.say == f2.say)
+			f.say = function(){
+				alert('呵呵')
+			}
+			Object.prototype.say = function(){
+				alert('我是obj下的');
+			}
+			f.say();
+			console.log(f)*/
+		//****************************************
+		</script>
+	</body>
+</html>
