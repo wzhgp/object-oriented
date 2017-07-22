@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//*********constructor******************
+			function Fn(){}
+			Fn.prototype = {
+				constructor:Fn,
+				say:function(){
+					alert('我是say,我会说话')
+				},
+				running:function(){
+					alert('我还会跑步')
+				}
+			}
+			var f = new Fn;
+			console.log(f.constructor)
+			console.dir(f)
+			//注：如果不手动改变，此时Fn的constructor就会指向Fn的构造函数object
+			//		手动改了，FnFn的constructor就会指向Fn,此时f.constructor就指向了它的构造函数Fn
+//			f.say()
+//			f.running();
+		//***************************
+		
+		//**********hasOwnproperty*********
+			//测试指定属性是不是对象自身下的，原型下的都不可以，必须是自身下的
+			function Fn(name){
+				this.name = name
+			}
+			Fn.prototype.say = function(){
+				alert(this.name)
+			}
+			var f = new Fn('胖胖');
+//			Fn.prototype.num = 10;
+			f.num = 11;
+			console.log(f.hasOwnProperty('num'));
+		//*********************************
+		</script>
+	</body>
+</html>

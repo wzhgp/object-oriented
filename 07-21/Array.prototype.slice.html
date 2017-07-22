@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+		</ul>
+	</body>
+	
+	<script type="text/javascript">
+		//*******找数组中最大值的方法，Math.max.apply(null,arr)*****
+//		var arr = [1,2,3];
+
+//		//apply的第二个参数可以是arguments类型，而此时的null指的就是下问
+//		console.log(Math.max.apply(null,arr));
+//			Function.apply()是JS的一个OOP特性，一般用来模拟继承和扩展this的用途，
+//			对于上面这段代码，可以这样去理解:
+//			XXX.apply是一个调用函数的方法，其参数为：apply(Function, Args)，
+//			Function为要调用的方法，Args是参数列表，当Function为null时，默认为上文，
+//				即Math.max.apply(null, arr)
+//				apply(Math.max, arr)
+//			然后，arr是一个参数列表，对于max方法，其参数是若干个数，即
+//				Math.max(a, b, c, d, ...)
+//			当使用apply时，把所有参数加入到一个数组中，即
+//				arr =  [a, b, c, d, ...]
+//			代入到原式，
+//				Math.max.apply(null, [a, b, c, d, ...])
+//			实际上等同于
+//				Math.max(a, b, c, d, ...)
+			//********************************************************
+			
+			//此时如果想遍历数组，使用forEach方法，此时lis只是一个伪类，并不是真正的数组
+				//方法1:
+//				var lis = document.getElementsByTagName('li');
+//					var arr = Array.from(lis);
+//					console.log(arr)
+//					arr.forEach(function(a,b){
+//						a.style.background = 'red'
+//						a.onclick = function(){
+//							alert(b)
+//						}
+//					})
+	
+			//方法2：
+				/*var _slice = Array.prototype.slice;
+				var arr = _slice.call(document.getElementsByTagName('li'));
+				console.log(arr)
+				arr.forEach(function(a,b){
+						a.style.background = 'red'
+						a.onclick = function(){
+							alert(b)
+						}
+				})*/
+	</script>
+</html>

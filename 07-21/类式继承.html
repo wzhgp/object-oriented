@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			1.类式继承：
+				a、属性继承
+					调用父级原型并且改变this指向
+				b、方法继承
+					引用中间值，改变地址
+				例：
+					function paohui(){}
+					paohui.prototype = 父级.prototype
+					ph = new paohui();
+					子级.prototype = ph;
+				
+			2.constructor:
+				构造函数上的一个(虚拟)属性，这个属性指向这个实例化对象的构造函数，并且可以手动改变constructor的指向
+			3.hasOwnProperty:
+				语法：对象.hasOwnProperty(属性)
+				作用：某个属性是不是这个对象下的
+				返回值：boolean
+			注：属性只有在**对象自身**才为**true**，原型下也不算
+			4.toString->String
+				内置对象都有toString方法
+				注：
+			5.	
+		-->
+		<script type="text/javascript">
+			/*var arr = [];
+			//console.log(arr instanceof Array)
+			//console.log(arr.constructor.name == 'Array')
+			//console.log(arr.push != undefined)
+			console.log(Object.prototype.toString.call(arr) === '[object Array]');*/
+			
+			var arr = [1,2,3,4,[1,2,3],{}];
+			var arr2 = [];
+			function deepClone(obj){
+				var _toString = Object.prototype.toString;
+				var o = obj.push?[]:{};
+				for(var attr in obj){
+					if(_toString.call(obj[attr]) === '[object Object]' || _toString.call(obj) === '[object Array]'){
+						o[attr] = deepClone(obj[attr]);
+					}else{
+						o[attr] = obj[attr];
+					}
+				}	
+				return o;
+			}
+			arr2 = deepClone(arr);
+//			arr2.push(9)
+			arr2[5].name = '4'
+			console.log(arr)
+			console.log(arr2)
+			
+			
+		</script>
+	</body>
+</html>

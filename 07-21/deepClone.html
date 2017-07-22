@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			写一个deepclone(深度克隆)的函数。 
+			如果对象中某个值为对象类型，那么赋值的时候依然为赋址。
+			
+			解决：
+				循环的时候，只要发现某个值为对象类型，那么继续循环这个对象类型，把对象类型中的值再赋值给另一个对象。
+		-->
+		<script type="text/javascript">
+			/*
+				方法1.JSON.parse(JSON.stringify(要转换的对象));
+					但此方法只适合纯数据
+				方法2.用toString+递归判断
+			 */
+			var arr = [1,2,3,[4,5],{}]
+//			var arr2 = JSON.parse(JSON.stringify(arr));
+			function deepClone(obj){
+				//用来测试obj的每一个值是什么类型
+				var _toString = Object.prototype.toString;
+				//判断obj是什么类型就给o赋值为什么类型
+				var o = obj.push?[]:{};
+				for(var attr in arr){
+					if(_toString.call(obj[attr])==='[object Object]' ||_toString.call(obj[attr])==='[object Array]'){
+						o[attr] = deepClone(obj[attr]);
+					}else{
+						o[attr] = obj[attr];
+					}
+				}
+				return o;
+			}
+			console.log(arr)
+			var arr2 = [];
+			arr2= deepClone(arr);
+			arr2[4].name = 'xiao';
+			console.log(arr2)
+		</script>
+	</body>
+</html>
